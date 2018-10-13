@@ -1,0 +1,6 @@
+1.2
+perl(Class::Accessor)
+perl(HTTP::Date)
+perl(HTTP::Request)
+perl(HTTP::Response)
+perl(URI::Escape)
