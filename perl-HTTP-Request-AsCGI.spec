@@ -4,7 +4,7 @@
 #
 Name     : perl-HTTP-Request-AsCGI
 Version  : 1.2
-Release  : 8
+Release  : 9
 URL      : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-request-ascgi-perl/libhttp-request-ascgi-perl_1.2-3.debian.tar.xz
@@ -46,7 +46,7 @@ license components for the perl-HTTP-Request-AsCGI package.
 cd ..
 %setup -q -T -D -n HTTP-Request-AsCGI-1.2 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Request-AsCGI-1.2/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Request-AsCGI-1.2/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
