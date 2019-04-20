@@ -4,11 +4,11 @@
 #
 Name     : perl-HTTP-Request-AsCGI
 Version  : 1.2
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-request-ascgi-perl/libhttp-request-ascgi-perl_1.2-3.debian.tar.xz
-Summary  : 'Set up a CGI environment from an HTTP::Request'
+Summary  : Set up a CGI environment from an HTTP::Request
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-HTTP-Request-AsCGI-license = %{version}-%{release}
@@ -28,6 +28,7 @@ Set up a CGI environment from an HTTP::Request
 Summary: dev components for the perl-HTTP-Request-AsCGI package.
 Group: Development
 Provides: perl-HTTP-Request-AsCGI-devel = %{version}-%{release}
+Requires: perl-HTTP-Request-AsCGI = %{version}-%{release}
 
 %description dev
 dev components for the perl-HTTP-Request-AsCGI package.
