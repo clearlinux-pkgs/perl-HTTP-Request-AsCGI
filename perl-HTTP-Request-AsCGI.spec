@@ -4,14 +4,15 @@
 #
 Name     : perl-HTTP-Request-AsCGI
 Version  : 1.2
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-request-ascgi-perl/libhttp-request-ascgi-perl_1.2-3.debian.tar.xz
-Summary  : Set up a CGI environment from an HTTP::Request
+Summary  : 'Set up a CGI environment from an HTTP::Request'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-HTTP-Request-AsCGI-license = %{version}-%{release}
+Requires: perl-HTTP-Request-AsCGI-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Class::Accessor)
 BuildRequires : perl(HTTP::Date)
@@ -42,18 +43,28 @@ Group: Default
 license components for the perl-HTTP-Request-AsCGI package.
 
 
+%package perl
+Summary: perl components for the perl-HTTP-Request-AsCGI package.
+Group: Default
+Requires: perl-HTTP-Request-AsCGI = %{version}-%{release}
+
+%description perl
+perl components for the perl-HTTP-Request-AsCGI package.
+
+
 %prep
 %setup -q -n HTTP-Request-AsCGI-1.2
-cd ..
-%setup -q -T -D -n HTTP-Request-AsCGI-1.2 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libhttp-request-ascgi-perl_1.2-3.debian.tar.xz
+cd %{_builddir}/HTTP-Request-AsCGI-1.2
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/HTTP-Request-AsCGI-1.2/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/HTTP-Request-AsCGI-1.2/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -63,7 +74,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -72,7 +83,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-HTTP-Request-AsCGI
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-HTTP-Request-AsCGI/LICENSE
+cp %{_builddir}/HTTP-Request-AsCGI-1.2/LICENSE %{buildroot}/usr/share/package-licenses/perl-HTTP-Request-AsCGI/674378819f8d4b269c32274d072b0b0757529b27
+cp %{_builddir}/HTTP-Request-AsCGI-1.2/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-HTTP-Request-AsCGI/4734ab822a897959b2ebefd74ad5fdd31b7b54fc
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -85,7 +97,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/HTTP/Request/AsCGI.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -93,4 +104,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-HTTP-Request-AsCGI/LICENSE
+/usr/share/package-licenses/perl-HTTP-Request-AsCGI/4734ab822a897959b2ebefd74ad5fdd31b7b54fc
+/usr/share/package-licenses/perl-HTTP-Request-AsCGI/674378819f8d4b269c32274d072b0b0757529b27
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/HTTP/Request/AsCGI.pm
