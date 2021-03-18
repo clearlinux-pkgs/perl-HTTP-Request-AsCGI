@@ -4,7 +4,7 @@
 #
 Name     : perl-HTTP-Request-AsCGI
 Version  : 1.2
-Release  : 16
+Release  : 17
 URL      : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-1.2.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libh/libhttp-request-ascgi-perl/libhttp-request-ascgi-perl_1.2-3.debian.tar.xz
@@ -109,4 +109,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/HTTP/Request/AsCGI.pm
+/usr/lib/perl5/vendor_perl/5.32.1/HTTP/Request/AsCGI.pm
